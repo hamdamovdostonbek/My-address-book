@@ -1,5 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h1>Booking App</h1>
+	{% if all_addresses %}
+		{% for article in all_addresses %}		
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title">{{article.name}}</h5>
+					<p class="card-text">
+						<span>{{article.city}}</span>
+					</p>
+					<a href="#" class="btn btn-secondary">Edit</a>
+				</div>
+			</div>
+		{% endfor %}
+
+	{% endif %}
 {% endblock %}
