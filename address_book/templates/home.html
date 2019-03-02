@@ -1,18 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	{% if all_addresses %}
-		{% for article in all_addresses %}		
-			<div class="card" style="width: 18rem;">
-				<div class="card-body">
-					<h5 class="card-title">{{article.name}}</h5>
-					<p class="card-text">
-						<span>{{article.city}}</span>
-					</p>
-					<a href="#" class="btn btn-secondary">Edit</a>
+<div class="container">
+	<div class="row">
+		{% if all_addresses %}
+			{% for article in all_addresses %}
+			<div class="col-sm">
+				<div class="card" style="width: 18rem;">
+					<div class="card-body">
+						<h5 class="card-title">{{article.name}}</h5>
+						<p class="card-text">
+							{{article.email}} <br>
+							{{article.phone}} <br>
+							{{article.address}} <br>
+							{{article.city}} <br>
+							{{article.state}}
+						</p>
+						<a href="{% url 'edit' article.id %}" class="btn btn-secondary">Edit</a>
+					</div>
 				</div>
 			</div>
-		{% endfor %}
-
-	{% endif %}
+			{% endfor %}
+		{% endif %}
+	</div>
+</div>
 {% endblock %}

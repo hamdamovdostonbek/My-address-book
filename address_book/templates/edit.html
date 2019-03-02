@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block content%}
+
+<h2>Edit address</h2>
+	{% if get_address %}
+		
+		<form method="POST">
+		{% csrf_token %}
+			<div class="form-group">
+				<input type="text" value="{{ get_address.name }}" class="form-control" id="example1" aria-describedby="emailHelp"  name="name">
+			</div>
+			<div class="form-group">
+				<input type="email" value="{{ get_address.email }}" class="form-control" id="example2" name="email">
+			</div>
+			<div class="form-group">
+				<input type="tel" value="{{ get_address.phone }}" class="form-control" id="example3"  name="phone">
+			</div>
+			<div class="form-group">
+				<input type="text" value="{{ get_address.address }}" class="form-control" id="example4"  name="address">
+			</div>
+			<div class="form-group">
+				<input type="text" value="{{ get_address.city }}" class="form-control" id="example5" name="city">
+			</div>
+			<div class="form-group">
+				<input type="text" value="{{ get_address.state }}" class="form-control" id="example6" name="state">
+			</div>		
+
+			<button type="submit" class="btn btn-secondary">Edit address</button>
+		</form>
+		<br>
+		<br>
+
+		<form method="POST" action="{% url 'delete' get_address.id %}">
+			{% csrf_token %}
+			<input type="hidden" value="{{ get_address.id }}" name="id">
+			<button type="submit" class="btn btn-danger">Delete address</button>
+		</form>		
+	{% endif %}
+{% endblock %}
